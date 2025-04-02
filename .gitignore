@@ -1,0 +1,13 @@
+.git/
+
+# 1. Ignore virtual environment folder:
+venv/
+
+# 2. Python cache files:
+__pycache__/
+*.pyc
+*.pyo
+
+# 3. Mac / Linux / Windows system files:
+.DS_Store
+Thumbs.db
