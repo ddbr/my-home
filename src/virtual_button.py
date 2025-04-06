@@ -1,6 +1,7 @@
 import logging
 import threading
 import os
+import time
 from pyhap.accessory import Accessory
 from pyhap.accessory_driver import AccessoryDriver
 from pyhap.const import CATEGORY_PROGRAMMABLE_SWITCH
@@ -52,7 +53,7 @@ class VirtualButton(Accessory):
                         logging.error(f"Invalid trigger file content: {e}")
                 os.remove(path)
             time.sleep(0.5)
-            
+
 def main():
     driver = AccessoryDriver(
         port=51826,
