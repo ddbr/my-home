@@ -29,6 +29,11 @@ class VirtualButton(Accessory):
         self.button_service.configure_char('ServiceLabelIndex', value=1)      # First button
 
         self.char_event = self.button_service.get_characteristic('ProgrammableSwitchEvent')
+        self.char_event.properties['ValidValues'] = {
+            0: 'Single Press',
+            1: 'Double Press',
+            2: 'Long Press'
+        }
         self._lock = threading.Lock()
         threading.Thread(target=self.watch_trigger_file, daemon=True).start()
 
