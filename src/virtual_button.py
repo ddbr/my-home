@@ -1,5 +1,6 @@
 import logging
 import threading
+import os
 from pyhap.accessory import Accessory
 from pyhap.accessory_driver import AccessoryDriver
 from pyhap.const import CATEGORY_PROGRAMMABLE_SWITCH
@@ -29,7 +30,7 @@ class VirtualButton(Accessory):
         self.char_event = self.button_service.get_characteristic('ProgrammableSwitchEvent')
         self._lock = threading.Lock()
         threading.Thread(target=self.watch_trigger_file, daemon=True).start()
-        
+
     def trigger_button(self, press_type=0):
         with self._lock:
             logging.info(f"🔘 Triggering HomeKit button event: {press_type}")
@@ -51,9 +52,7 @@ class VirtualButton(Accessory):
                         logging.error(f"Invalid trigger file content: {e}")
                 os.remove(path)
             time.sleep(0.5)
-
-
-
+            
 def main():
     driver = AccessoryDriver(
         port=51826,
