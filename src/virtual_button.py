@@ -37,7 +37,7 @@ class VirtualButton(Accessory):
         self._lock = threading.Lock()
         threading.Thread(target=self.watch_trigger_file, daemon=True).start()
 
-    def trigger_button(self, press_type):
+    def trigger_button(self, press_type=0):
         with self._lock:
             logging.info(f"🔘 Triggering HomeKit button event: {press_type}")
             self.char_event.set_value(press_type)
