@@ -28,15 +28,31 @@ class VirtualButton(Accessory):
 
         self.char_event = self.button_service.get_characteristic('ProgrammableSwitchEvent')
         self._lock = threading.Lock()
+        threading.Thread(target=self.watch_trigger_file, daemon=True).start()
+
 
     def trigger_button(self, press_type=0):
-        """
-        Triggers a HomeKit button press.
-        0 = Single Press, 1 = Double Press, 2 = Long Press
-        """
         with self._lock:
             logging.info(f"🔘 Triggering HomeKit button event: {press_type}")
             self.char_event.set_value(press_type)
+
+    def watch_trigger_file(self):
+        path = "/tmp/virtual_button_trigger"
+        while True:
+            if os.path.exists(path):
+                with open(path) as f:
+                    try:
+                        press_type = int(f.read().strip())
+                        if press_type in [0, 1, 2]:
+                            self.trigger_button(press_type)
+                            logging.info(f"📥 Triggered press type: {press_type}")
+                        else:
+                            logging.warning(f"⚠️ Invalid press type: {press_type}")
+                    except Exception as e:
+                        logging.error(f"Invalid trigger file content: {e}")
+                os.remove(path)
+            time.sleep(0.5)
+
 
 
 def main():
