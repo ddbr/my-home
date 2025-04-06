@@ -2,6 +2,7 @@
 
 # 1. Ignore virtual environment folder:
 venv/
+.venv/
 
 # 2. Python cache files:
 __pycache__/
