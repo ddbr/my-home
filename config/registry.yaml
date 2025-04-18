@@ -1,0 +1,5 @@
+homekit_buttons:
+  scene_1:
+    name: "Büro Scene 1"
+    type: "stateless_switch"
+    input_channel: 1
