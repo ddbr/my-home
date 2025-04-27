@@ -1,6 +1,5 @@
 Here you go — clean and ready for **copy-paste** into your `README.md` file:
 
-```markdown
 # 🏡 My Home — HomeKit + Feller Wiser Integration
 
 This project integrates HomeKit virtual buttons with Feller Wiser scenes.  
