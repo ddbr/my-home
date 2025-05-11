@@ -1,8 +1,0 @@
-buttons:
-  - device_id: "000309c4"
-    input_channel: 0
-    scene_name: "scene_1"
-buttons:
-  - device_id: "000309c4"
-    input_channel: 1
-    scene_name: "scene_2"
