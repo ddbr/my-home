@@ -1,0 +1,1 @@
+# Wiser API connector stub

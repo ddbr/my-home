@@ -1,0 +1,12 @@
+# Sample device registry
+buttons:
+  - id: 101
+    name: Büro Szene 1
+    type: stateless_switch
+    scene_channel: 20
+
+loads:
+  - id: 201
+    name: Deckenlampe
+    type: light
+    dimmable: true

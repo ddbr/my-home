@@ -1,0 +1,1 @@
+# HomeKit server stub
